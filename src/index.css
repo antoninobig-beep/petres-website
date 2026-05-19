@@ -1,0 +1,300 @@
+/*
+ * Design system Petres — ispirato a ever.co.id
+ * Palette: caramel/cuoio caldo + cream + ocra
+ * Tipografia: Fraunces (display lowercase, ricorda Bradford) + Inter Tight (body grotesk, ricorda Maax)
+ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* === Palette ufficiale Petres (estratta da palette petres.png) ===
+     * 01 cream      #F6F1EB  hsl 33 38% 94%   — testo cream su dark, surfaces light
+     * 02 beige      #E6D7C8  hsl 30 37% 84%   — accenti soft femminili
+     * 03 rosa cipria #CEA6A1  hsl 7 31% 72%   — accent caldo opzionale
+     * 04 ocra/oro   #C6A06B  hsl 35 44% 60%   — BRAND ACCENT
+     * 05 mocha      #9C8476  hsl 22 16% 54%   — muted, card secondary
+     * 06 cacao      #6A5044  hsl 19 22% 34%   — BG DOMINANTE
+     * 07 espresso   #2B1E1A  hsl 14 25% 14%   — FOREGROUND scuro / accent dark
+     */
+
+    /* Background dominante = cacao Petres */
+    --background: 19 22% 34%;
+    /* Soft = intermedio tra cacao e mocha, mantiene contrast cream readable */
+    --background-soft: 19 20% 40%;
+    /* Foreground = espresso Petres */
+    --foreground: 14 25% 14%;
+
+    /* Card = mocha Petres (livello chiaro per evidenziare elementi) */
+    --card: 22 16% 54%;
+    --card-foreground: 33 38% 94%;
+
+    --popover: 14 25% 14%;
+    --popover-foreground: 33 38% 94%;
+
+    --primary: 33 38% 94%;
+    --primary-foreground: 14 25% 14%;
+
+    /* Brand accent = ocra/oro Petres (#C6A06B) */
+    --secondary: 35 44% 60%;
+    --secondary-foreground: 14 25% 14%;
+
+    --muted: 22 16% 54%;
+    --muted-foreground: 30 37% 84%;
+
+    --accent: 35 44% 60%;
+    --accent-foreground: 14 25% 14%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 33 38% 94% / 0.18;
+    --input: 33 38% 94% / 0.2;
+    --ring: 35 44% 60%;
+
+    --radius: 0.25rem;
+
+    --font-heading: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Inter Tight', 'Inter', system-ui, sans-serif;
+
+    /* === Brand tokens (ocra Petres) === */
+    --brand-primary: 35 44% 60%;
+    --brand-primary-dark: 19 22% 28%;
+    --brand-secondary: 33 38% 94%;
+    --brand-accent: 35 44% 60%;
+
+    /* === CTA tokens === */
+    --cta-primary: 33 38% 94%;
+    --cta-primary-hover: 30 37% 84%;
+    --cta-primary-text: 14 25% 14%;
+    --cta-secondary-border: 33 38% 94%;
+    --cta-secondary-text: 33 38% 94%;
+
+    --surface: 19 20% 40%;
+    --text-secondary: 30 37% 84%;
+
+    /* Cream Petres (#F6F1EB → hsl 33 38% 94%) per testi su dark.
+     * Alpha tunati per WCAG AA su cacao (#6A5044):
+     *  - on-dark:        contrast ~5.1 → AA normal text PASS
+     *  - on-dark-soft:   0.82 alpha → contrast ~3.9 → AA large text PASS
+     *  - on-dark-faint:  0.62 alpha → minimal supporting text
+     */
+    --on-dark: 33 38% 94%;
+    --on-dark-soft: 33 38% 94% / 0.82;
+    --on-dark-faint: 33 38% 94% / 0.62;
+
+    /* Rosa cipria opzionale per accent caldi (es. badge soft) */
+    --rose: 7 31% 72%;
+
+    --sidebar-background: 19 20% 40%;
+    --sidebar-foreground: 33 38% 94%;
+    --sidebar-primary: 35 44% 60%;
+    --sidebar-primary-foreground: 14 25% 14%;
+    --sidebar-accent: 22 16% 54%;
+    --sidebar-accent-foreground: 33 38% 94%;
+    --sidebar-border: 33 38% 94% / 0.18;
+    --sidebar-ring: 35 44% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "cv01", "cv11"; /* Inter Tight stylistic sets */
+  }
+
+  /* === Typography ever-style ===
+   * - Iniziale maiuscola (sentence case), niente più text-transform: lowercase forzato.
+   * - peso 400, optical size grande, tracking negativo, font Fraunces
+   */
+  h1 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 0.96;
+    font-size: clamp(56px, 8vw, 140px);
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+
+  h2 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.0;
+    font-size: clamp(40px, 5.5vw, 88px);
+    font-variation-settings: "opsz" 96, "SOFT" 50;
+  }
+
+  h3 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    font-size: 28px;
+    font-variation-settings: "opsz" 36;
+  }
+
+  /* Tablet */
+  @media (max-width: 1023px) {
+    body { font-size: 15px; }
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    h3 { font-size: 22px; line-height: 1.2; }
+    body { font-size: 15px; }
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-28 md:py-40 px-6 md:px-10;
+  }
+
+  .container-content {
+    @apply max-w-[1200px] mx-auto;
+  }
+
+  .text-small {
+    font-size: 11px;
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .text-body-lg {
+    font-size: 19px;
+    line-height: 1.55;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+
+  /* Helper: text on dark caramel — usa cream Petres ufficiale (#F6F1EB) con alpha tunati */
+  .text-on-dark { color: hsl(33 38% 94%); }
+  .text-on-dark-soft { color: hsl(33 38% 94% / 0.82); }
+  .text-on-dark-faint { color: hsl(33 38% 94% / 0.62); }
+
+  /* Editorial italic accent — quando vuoi quel mezzo carattere ever-style */
+  .italic-accent {
+    font-style: italic;
+    font-weight: 400;
+    color: hsl(var(--brand-accent));
+  }
+}
+
+/*
+ * Override globale: dentro le sezioni con bg-background o bg-background-soft
+ * (tutto il sito ora vive sul tema dark Petres), forziamo il testo a cream
+ * per non riscrivere ogni text-foreground/text-muted-foreground del codice.
+ */
+section.bg-background,
+section.bg-background-soft,
+section.bg-card,
+.bg-background section,
+.bg-background-soft section,
+.bg-card section {
+  color: hsl(var(--on-dark));
+}
+
+section.bg-background .text-foreground,
+section.bg-background-soft .text-foreground,
+section.bg-card .text-foreground,
+section.bg-background h1,
+section.bg-background-soft h1,
+section.bg-card h1,
+section.bg-background h2,
+section.bg-background-soft h2,
+section.bg-card h2,
+section.bg-background h3,
+section.bg-background-soft h3,
+section.bg-card h3 {
+  color: hsl(var(--on-dark)) !important;
+}
+
+section.bg-background .text-muted-foreground,
+section.bg-background-soft .text-muted-foreground,
+section.bg-card .text-muted-foreground {
+  color: hsl(var(--on-dark) / 0.65) !important;
+}
+
+section.bg-background .text-card,
+section.bg-background-soft .text-card,
+section.bg-card .text-card {
+  color: hsl(var(--on-dark)) !important;
+}
+
+/* Border dentro le sezioni dark va in cream/0.18 */
+section.bg-background .border-border,
+section.bg-background-soft .border-border,
+section.bg-card .border-border,
+section.bg-background [class*="border-b"],
+section.bg-background-soft [class*="border-b"],
+section.bg-card [class*="border-b"] {
+  border-color: hsl(var(--on-dark) / 0.18) !important;
+}
+
+/* (rimossa la regola che forzava color:inherit sui button dentro le sezioni dark
+   — causava bottoni cream-su-cream perché il section parent eredita on-dark cream
+   e i CTA "hero" hanno fondo cream con testo nero). I bottoni mantengono il
+   loro color esplicito definito dal variant.) */
+
+/* === Accessibility === */
+
+/* Focus visibile per tutti gli elementi interattivi (keyboard navigation) */
+:where(a, button, input, textarea, select, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid hsl(var(--brand-accent));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip-to-content link */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.focus\:not-sr-only:focus,
+.focus-visible\:not-sr-only:focus-visible {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Body min font-size on mobile per leggibilità */
+@media (max-width: 767px) {
+  body { font-size: 16px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
