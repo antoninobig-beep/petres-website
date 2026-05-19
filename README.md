@@ -64,3 +64,7 @@ Vedi **[CONTRIBUTING.md](./CONTRIBUTING.md)** per il flusso completo. In breve:
 I testi della landing sono dentro `src/components/landing/*.tsx`.
 Le immagini stanno in `src/assets/` (importate via `import` nei componenti)
 o in `public/` (path assoluto `/...`).
+
+---
+
+<sub>Last updated: setup workflow Vercel preview verificato.</sub>
