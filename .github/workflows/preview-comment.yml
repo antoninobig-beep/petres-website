@@ -1,0 +1,107 @@
+name: PR Preview Comment
+
+# Quando Vercel finisce di buildare una preview per una PR, posta/aggiorna
+# un commento sul PR con il link preview + bypass token (se configurato).
+# Trigger: GitHub fires `deployment_status` events quando Vercel notifica esito.
+
+on:
+  deployment_status:
+
+permissions:
+  pull-requests: write
+  deployments: read
+  contents: read
+
+jobs:
+  comment:
+    # Solo deployment di preview riusciti (non production, non failed)
+    if: >-
+      github.event.deployment_status.state == 'success' &&
+      github.event.deployment.environment != 'Production' &&
+      github.event.deployment.environment != 'production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find associated PR for this commit
+        id: pr
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const sha = context.payload.deployment.sha;
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100,
+            });
+            const pr = prs.find(p => p.head.sha === sha);
+            if (!pr) {
+              core.info(`No open PR found for commit ${sha}. Probably a direct push to main or non-PR build — skipping comment.`);
+              return '';
+            }
+            core.info(`Matched PR #${pr.number} (${pr.title})`);
+            return String(pr.number);
+            // returns '' or the PR number as string
+          result-encoding: string
+
+      - name: Post or update preview comment
+        if: steps.pr.outputs.result != ''
+        uses: actions/github-script@v7
+        env:
+          BYPASS_TOKEN: ${{ secrets.VERCEL_BYPASS_TOKEN }}
+        with:
+          script: |
+            const prNumber = parseInt('${{ steps.pr.outputs.result }}', 10);
+            const dep = context.payload.deployment;
+            const ds = context.payload.deployment_status;
+
+            // environment_url è l'URL pubblico (xxx.vercel.app); target_url è la dashboard Vercel
+            const previewUrl = (ds.environment_url || ds.target_url || '').replace(/\/+$/, '');
+            const dashboardUrl = ds.target_url || '';
+            const bypass = process.env.BYPASS_TOKEN;
+
+            // Costruisci access URL: con bypass token (se presente) il primo click setta cookie
+            const accessUrl = bypass && previewUrl
+              ? `${previewUrl}/?x-vercel-protection-bypass=${bypass}&x-vercel-set-bypass-cookie=true`
+              : previewUrl;
+
+            const sha = dep.sha.slice(0, 7);
+            const tag = '<!-- vercel-preview-link -->';
+            const bypassNote = bypass
+              ? `> 🔑 Il link include il bypass token: il primo click setta un cookie, poi navighi senza riautenticarti.`
+              : `> ⚠️ Nessun \`VERCEL_BYPASS_TOKEN\` configurato come secret. La preview richiede login Vercel.\n> Genera un token da: Vercel dashboard → petres-preview → Settings → Deployment Protection → "Protection Bypass for Automation".`;
+
+            const body = `${tag}
+            ### 🔗 Preview Vercel pronta
+
+            **Apri:** ${accessUrl}
+
+            ${bypassNote}
+
+            <sub>Build su commit \`${sha}\` · [Dashboard Vercel](${dashboardUrl})</sub>`;
+
+            // Cerca un commento esistente con il nostro tag per fare update invece di duplicare
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              per_page: 100,
+            });
+            const existing = comments.find(c => c.body && c.body.includes(tag));
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+              core.info(`Updated existing comment ${existing.id} on PR #${prNumber}`);
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body,
+              });
+              core.info(`Created new comment on PR #${prNumber}`);
+            }
