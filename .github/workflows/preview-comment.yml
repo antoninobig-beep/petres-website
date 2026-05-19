@@ -46,8 +46,6 @@ jobs:
       - name: Post or update preview comment
         if: steps.pr.outputs.result != ''
         uses: actions/github-script@v7
-        env:
-          BYPASS_TOKEN: ${{ secrets.VERCEL_BYPASS_TOKEN }}
         with:
           script: |
             const prNumber = parseInt('${{ steps.pr.outputs.result }}', 10);
@@ -57,25 +55,15 @@ jobs:
             // environment_url è l'URL pubblico (xxx.vercel.app); target_url è la dashboard Vercel
             const previewUrl = (ds.environment_url || ds.target_url || '').replace(/\/+$/, '');
             const dashboardUrl = ds.target_url || '';
-            const bypass = process.env.BYPASS_TOKEN;
-
-            // Costruisci access URL: con bypass token (se presente) il primo click setta cookie
-            const accessUrl = bypass && previewUrl
-              ? `${previewUrl}/?x-vercel-protection-bypass=${bypass}&x-vercel-set-bypass-cookie=true`
-              : previewUrl;
-
             const sha = dep.sha.slice(0, 7);
             const tag = '<!-- vercel-preview-link -->';
-            const bypassNote = bypass
-              ? `> 🔑 Il link include il bypass token: il primo click setta un cookie, poi navighi senza riautenticarti.`
-              : `> ⚠️ Nessun \`VERCEL_BYPASS_TOKEN\` configurato come secret. La preview richiede login Vercel.\n> Genera un token da: Vercel dashboard → petres-preview → Settings → Deployment Protection → "Protection Bypass for Automation".`;
 
             const body = `${tag}
             ### 🔗 Preview Vercel pronta
 
-            **Apri:** ${accessUrl}
+            **Apri:** ${previewUrl}
 
-            ${bypassNote}
+            > Apri il link, naviga, lascia feedback sul PR. Se la preview chiede login Vercel significa che la Deployment Protection non è ancora disabilitata sulle preview — segnalalo al maintainer.
 
             <sub>Build su commit \`${sha}\` · [Dashboard Vercel](${dashboardUrl})</sub>`;
 
