@@ -66,7 +66,7 @@ const Header = () => {
             className="flex items-center gap-4 z-10"
           >
             <a href="#" onClick={scrollToTop} aria-label="Petres — home" className="block">
-              <Logo variant="light" height="clamp(44px, 11vw, 56px)" />
+              <Logo variant="light" height="clamp(52px, 13vw, 68px)" />
             </a>
             <a
               href="https://www.instagram.com/petresesteticaebenessere/"
