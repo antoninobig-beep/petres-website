@@ -1,6 +1,6 @@
 import { ArrowUpRight, Menu, X, Instagram } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { EASE, EASE_CSS } from "@/lib/easing";
@@ -25,6 +25,12 @@ const navItems = [
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const scrollToTop = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -59,7 +65,7 @@ const Header = () => {
             transition={{ duration: 0.7, ease: EASE.outSoft }}
             className="flex items-center gap-4 z-10"
           >
-            <a href="#" aria-label="Petres — home" className="block">
+            <a href="#" onClick={scrollToTop} aria-label="Petres — home" className="block">
               <Logo variant="light" height="clamp(30px, 8vw, 36px)" />
             </a>
             <a
