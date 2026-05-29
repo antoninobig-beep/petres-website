@@ -47,10 +47,6 @@ const Footer = () => {
 
         <div className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-3 text-[11px] tracking-[0.04em] text-center md:text-left" style={{ borderTop: '1px solid hsla(36, 30%, 95%, 0.1)', color: 'hsla(36, 30%, 95%, 0.3)' }}>
           <span>© {new Date().getFullYear()} PETRES Estetica e Benessere</span>
-          <div className="flex gap-6">
-            <a href="#" className="hover:opacity-70 transition-opacity duration-200 py-1">Privacy Policy</a>
-            <a href="#" className="hover:opacity-70 transition-opacity duration-200 py-1">Cookie Policy</a>
-          </div>
         </div>
       </div>
     </motion.footer>
