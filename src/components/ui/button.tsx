@@ -8,7 +8,7 @@ const buttonVariants = cva(
   // Hover transitions con cubic-bezier `inOut` (0.4, 0, 0.2, 1) — simmetrica
   // naturale in entrata e uscita. Durata 400ms ottimale per micro-interazioni.
   // Lift sottile -1.5px + arrow shift + accent glow su variant hero.
-  "group/btn inline-flex items-center justify-center gap-2 whitespace-nowrap font-body font-medium transition-all duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--brand-accent))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--background))] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:transition-transform [&_svg]:duration-[400ms] [&_svg]:ease-[cubic-bezier(0.4,0,0.2,1)] hover:[&_svg]:translate-x-0.5 active:scale-[0.97]",
+  "group/btn inline-flex items-center justify-center gap-2 whitespace-nowrap font-body font-medium transition-all duration-[400ms] ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--brand-accent))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--background))] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:transition-transform [&_svg]:duration-[400ms] [&_svg]:ease-in-out hover:[&_svg]:translate-x-0.5 active:scale-[0.97]",
   {
     variants: {
       variant: {
@@ -22,7 +22,7 @@ const buttonVariants = cva(
         // Hover: ocra entra da sinistra (swipe fill via ::before) + testo si scurisce
         // + bordo diventa ocra. Niente più pill cream classica.
         hero:
-          "relative overflow-hidden z-0 rounded-sm border-[1.5px] border-[hsl(var(--on-dark))] bg-transparent text-[hsl(var(--on-dark))] hover:text-[hsl(var(--foreground))] hover:border-[hsl(var(--brand-accent))] before:content-[''] before:absolute before:inset-0 before:bg-[hsl(var(--brand-accent))] before:[transform:translateX(-101%)] before:transition-transform before:duration-[550ms] before:ease-[cubic-bezier(0.4,0,0.2,1)] before:z-[-1] hover:before:[transform:translateX(0)] active:before:[transform:translateX(0)] active:text-[hsl(var(--foreground))]",
+          "relative overflow-hidden z-0 rounded-sm border-[1.5px] border-[hsl(var(--on-dark))] bg-transparent text-[hsl(var(--on-dark))] hover:text-[hsl(var(--foreground))] hover:border-[hsl(var(--brand-accent))] before:content-[''] before:absolute before:inset-0 before:bg-[hsl(var(--brand-accent))] before:[transform:translateX(-101%)] before:transition-transform before:duration-[550ms] before:ease-in-out before:z-[-1] hover:before:[transform:translateX(0)] active:before:[transform:translateX(0)] active:text-[hsl(var(--foreground))]",
         // Outline ghost: solo testo + arrow + underline ocra subtle (per CTA secondari)
         heroOutline:
           "bg-transparent text-[hsl(var(--on-dark))] rounded-sm border-b border-[hsl(var(--on-dark)/0.4)] rounded-none hover:border-[hsl(var(--brand-accent))] hover:text-[hsl(var(--brand-accent))] !px-0 !pb-2 !pt-0 !h-auto",

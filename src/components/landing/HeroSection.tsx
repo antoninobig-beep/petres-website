@@ -209,7 +209,7 @@ naturale.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Scrivici su WhatsApp (si apre in nuova finestra)"
-                  className="text-on-dark text-[11.5px] md:text-[12px] tracking-[0.14em] uppercase font-medium border-b pb-1.5 px-2 py-1 min-h-[44px] flex items-center transition-all duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-[hsl(var(--brand-accent))] hover:border-[hsl(var(--brand-accent))]"
+                  className="text-on-dark text-[11.5px] md:text-[12px] tracking-[0.14em] uppercase font-medium border-b pb-1.5 px-2 py-1 min-h-[44px] flex items-center transition-all duration-[450ms] ease-expo hover:text-[hsl(var(--brand-accent))] hover:border-[hsl(var(--brand-accent))]"
                   style={{ borderColor: "hsl(var(--on-dark) / 0.4)" }}
                 >
                   Scrivici su WhatsApp
