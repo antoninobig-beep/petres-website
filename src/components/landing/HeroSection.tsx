@@ -1,7 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import heroModel from "@/assets/hero-model.png";
+import heroModel from "@/assets/hero-model.jpg";
 import Logo from "@/components/Logo";
 import RevealText from "@/components/anim/RevealText";
 import { Button } from "@/components/ui/button";
