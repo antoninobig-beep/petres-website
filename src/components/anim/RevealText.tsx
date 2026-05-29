@@ -43,7 +43,7 @@ const RevealText = ({
   // Split: preserviamo i \n manuali come line breaks
   const lines = children.split("\n");
 
-  const Component = motion[as] as any;
+  const Component = motion[as] as (typeof motion)["div"];
 
   const containerVariants = {
     hidden: {},

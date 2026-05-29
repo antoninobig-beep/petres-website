@@ -1,6 +1,9 @@
 import { useEffect, ReactNode } from "react";
 import Lenis from "lenis";
 
+/** window con riferimento Lenis esposto (il tipo globale di lenis è diverso, castiamo qui). */
+type WindowWithLenis = { lenis?: Lenis };
+
 /**
  * SmoothScroll — Lenis provider, ricostruisce il feel di ever.co.id.
  * Parametri tunati per inerzia lunga e dolce: lerp basso, duration medio-alto,
@@ -25,7 +28,7 @@ const SmoothScroll = ({ children }: { children: ReactNode }) => {
     });
 
     // Esponi globalmente per consumer (es. HeroSection auto-scroll)
-    (window as any).lenis = lenis;
+    (window as unknown as WindowWithLenis).lenis = lenis;
 
     let rafId: number;
     function raf(time: number) {
@@ -37,7 +40,7 @@ const SmoothScroll = ({ children }: { children: ReactNode }) => {
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
-      delete (window as any).lenis;
+      delete (window as unknown as WindowWithLenis).lenis;
     };
   }, []);
 
