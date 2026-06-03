@@ -22,28 +22,18 @@ const ServicesSection = () => {
   return (
     <section id="servizi" className="py-16 md:py-28 scroll-mt-20 bg-background">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-5 md:gap-6 mb-10 md:mb-14">
+        {/* Header — titolo centrato */}
+        <div className="mb-10 md:mb-14 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease }}
           >
-            <RevealText as="h2" className="text-on-dark" stagger={0.08} duration={1.2}>
+            <RevealText as="h2" className="text-on-dark text-center" stagger={0.08} duration={1.2}>
               Servizi
             </RevealText>
           </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, delay: 0.1, ease }}
-            className="text-on-dark-soft text-[15px] md:text-[14px] leading-relaxed max-w-sm md:max-w-xs font-body italic"
-          >
-            Ogni servizio è parte di un percorso pensato sulle tue esigenze reali, per valorizzare la tua bellezza naturale.
-          </motion.p>
         </div>
 
         {/* Cards — horizontal scroll on mobile, 4-col on desktop */}

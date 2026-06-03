@@ -92,9 +92,8 @@ const ProblemSection = () => {
             stagger={0.07}
             duration={1.1}
           >
-            {`I risultati che
-inizierai a vedere
-davvero`}
+            {`I risultati che inizierai
+a vedere davvero`}
           </RevealText>
           <p className="text-on-dark-soft text-[15px] leading-relaxed">
             Non si tratta solo di estetica. Si tratta di sentirti di nuovo a tuo

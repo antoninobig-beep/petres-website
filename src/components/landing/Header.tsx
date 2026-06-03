@@ -56,7 +56,7 @@ const Header = () => {
         aria-hidden="true"
       />
 
-      <div className="relative max-w-[1280px] mx-auto px-5 md:px-12 pt-4 md:pt-4 pb-2 md:pb-0">
+      <div className="relative px-5 sm:px-6 md:px-10 lg:px-16 pt-4 md:pt-4 pb-2 md:pb-0">
         <div className="flex items-center justify-between">
           {/* Sinistra — Logo + Instagram */}
           <motion.div

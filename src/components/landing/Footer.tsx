@@ -12,9 +12,9 @@ const Footer = () => {
       className="section-padding bg-background"
     >
       <div className="container-content">
-        <div className="grid md:grid-cols-3 gap-10 md:gap-16 mb-12 md:mb-16">
+        <div className="grid md:grid-cols-3 gap-10 md:gap-16 mb-12 md:mb-16 md:items-start">
           <div>
-            <div className="mb-5"><Logo variant="light" height={64} /></div>
+            <div className="mb-5"><Logo variant="light" height={48} /></div>
             <a href="https://www.instagram.com/petresesteticaebenessere/" target="_blank" rel="noopener noreferrer" className="inline-block text-[12px] tracking-[0.06em] uppercase transition-opacity duration-300 py-2 -my-2" style={{ color: 'hsla(37, 42%, 62%, 0.7)' }}>
               Instagram →
             </a>
