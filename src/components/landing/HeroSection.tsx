@@ -181,9 +181,8 @@ bellezza naturale.`}
                 className="pointer-events-auto text-[15px] leading-[1.55] md:text-body-lg text-on-dark-soft max-w-[560px] mx-auto md:mx-0 md:ml-auto md:text-right text-center px-1"
               >
                 Da Petres ogni percorso parte da te.<br />
-                Il <em>Metodo <span className="tracking-[0.12em]">SYNERGIES</span></em>{" "}
-                individua il trattamento più adatto per valorizzare viso e
-                corpo.
+                Il <em>Metodo <span className="tracking-[0.12em]">SYNERGIES</span></em> individua il trattamento<br />
+                più adatto per valorizzare viso e corpo.
               </motion.p>
 
               <motion.div
@@ -212,7 +211,7 @@ bellezza naturale.`}
                   className="w-full sm:w-auto text-center text-on-dark text-[11.5px] md:text-[12px] tracking-[0.14em] uppercase font-medium border-b pb-1.5 px-2 py-1 min-h-[44px] flex items-center justify-center transition-all duration-[450ms] ease-expo hover:text-[hsl(var(--brand-accent))] hover:border-[hsl(var(--brand-accent))]"
                   style={{ borderColor: "hsl(var(--on-dark) / 0.4)" }}
                 >
-                  Scrivici su WhatsApp
+                  <span className="leading-tight">Scrivici su<br />WhatsApp</span>
                 </a>
               </motion.div>
             </div>
