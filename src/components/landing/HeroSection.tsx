@@ -162,9 +162,8 @@ const HeroSection = () => {
                 className="text-on-dark"
                 style={{ marginBottom: 0 }}
               >
-                {`Valorizza
-la tua bellezza
-naturale.`}
+                {`Valorizza la tua
+bellezza naturale.`}
               </RevealText>
             </motion.div>
 
@@ -181,7 +180,8 @@ naturale.`}
                 transition={{ duration: 0.9, delay: 1.3, ease: easeEver }}
                 className="pointer-events-auto text-[15px] leading-[1.55] md:text-body-lg text-on-dark-soft max-w-[560px] mx-auto md:mx-0 md:ml-auto md:text-right text-center px-1"
               >
-                Da Petres ogni percorso parte da te. Il <em>Metodo SYNERGIES</em>{" "}
+                Da Petres ogni percorso parte da te.<br />
+                Il <em>Metodo <span className="tracking-[0.12em]">SYNERGIES</span></em>{" "}
                 individua il trattamento più adatto per valorizzare viso e
                 corpo.
               </motion.p>
@@ -209,7 +209,7 @@ naturale.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Scrivici su WhatsApp (si apre in nuova finestra)"
-                  className="text-on-dark text-[11.5px] md:text-[12px] tracking-[0.14em] uppercase font-medium border-b pb-1.5 px-2 py-1 min-h-[44px] flex items-center transition-all duration-[450ms] ease-expo hover:text-[hsl(var(--brand-accent))] hover:border-[hsl(var(--brand-accent))]"
+                  className="w-full sm:w-auto text-center text-on-dark text-[11.5px] md:text-[12px] tracking-[0.14em] uppercase font-medium border-b pb-1.5 px-2 py-1 min-h-[44px] flex items-center justify-center transition-all duration-[450ms] ease-expo hover:text-[hsl(var(--brand-accent))] hover:border-[hsl(var(--brand-accent))]"
                   style={{ borderColor: "hsl(var(--on-dark) / 0.4)" }}
                 >
                   Scrivici su WhatsApp
