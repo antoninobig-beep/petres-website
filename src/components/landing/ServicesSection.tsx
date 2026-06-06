@@ -80,12 +80,13 @@ const ServicesSection = () => {
                 />
               </div>
 
-              {/* Title — bottom left */}
+              {/* Title — bottom left. Su desktop: zona titolo a 2 righe, allineata
+                 in basso → tutti i titoli sulla stessa linea anche se 1 o 2 righe. */}
               <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
-                <h3 className="text-white text-[17px] md:text-[18px] font-heading font-medium leading-tight transition-transform duration-300 group-hover:-translate-y-0.5">
+                <h3 className="text-white text-[17px] md:text-[15px] font-heading font-medium leading-tight md:leading-[1.2] md:flex md:items-end md:min-h-[2.4em] transition-transform duration-300 group-hover:-translate-y-0.5">
                   {s.title}
                 </h3>
-                <p className="text-white/70 md:text-white/50 text-[12px] font-body mt-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white/70 text-[12px] font-body mt-1 md:hidden">
                   {s.desc}
                 </p>
               </div>
