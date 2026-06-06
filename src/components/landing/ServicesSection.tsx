@@ -5,6 +5,7 @@ import serviceViso from "@/assets/service-viso.jpg";
 import serviceCorpo from "@/assets/service-corpo.jpg";
 import serviceConsulenza from "@/assets/service-consulenza.jpg";
 import servicePercorsi from "@/assets/service-percorsi.jpg";
+import serviceMakeup from "@/assets/service-makeup.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -13,6 +14,7 @@ const services = [
   { title: "Trattamenti corpo", desc: "Armonia, benessere e tonicità.", image: serviceCorpo },
   { title: "Consulenza personalizzata", desc: "Il primo passo per capire cosa è adatto a te.", image: serviceConsulenza },
   { title: "Percorsi su misura", desc: "Programmi costruiti sui tuoi obiettivi.", image: servicePercorsi },
+  { title: "Make up cerimonia e sposa", desc: "Trucco professionale per cerimonie e spose.", image: serviceMakeup },
 ];
 
 // Tutte le cards stessa altezza + stesso aspect ratio (4:5 portrait)
@@ -36,9 +38,9 @@ const ServicesSection = () => {
           </motion.div>
         </div>
 
-        {/* Cards — horizontal scroll on mobile, 4-col on desktop */}
+        {/* Cards — horizontal scroll on mobile, 5-col on desktop */}
         <div
-          className="flex gap-3 md:gap-4 overflow-x-auto md:overflow-visible md:grid md:grid-cols-4 scrollbar-hide pb-2 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory [scroll-padding-left:1.5rem] md:[scroll-padding-left:0]"
+          className="flex gap-3 md:gap-4 overflow-x-auto md:overflow-visible md:grid md:grid-cols-5 scrollbar-hide pb-2 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory [scroll-padding-left:1.5rem] md:[scroll-padding-left:0]"
         >
           {services.map((s, i) => (
             <motion.a
