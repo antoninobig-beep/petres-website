@@ -31,8 +31,8 @@ const Footer = () => {
             <a href="https://wa.me/393406924537" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[13px] hover:opacity-80 transition-opacity duration-300 py-1" style={{ color: 'hsla(36, 30%, 95%, 0.5)' }}>
               <MessageCircle className="w-3.5 h-3.5" strokeWidth={1.2} /> WhatsApp
             </a>
-            <a href="mailto:info@petres.it" className="flex items-center gap-3 text-[13px] hover:opacity-80 transition-opacity duration-300 py-1" style={{ color: 'hsla(36, 30%, 95%, 0.5)' }}>
-              <Mail className="w-3.5 h-3.5" strokeWidth={1.2} /> info@petres.it
+            <a href="mailto:petresestetica@gmail.com" className="flex items-center gap-3 text-[13px] hover:opacity-80 transition-opacity duration-300 py-1" style={{ color: 'hsla(36, 30%, 95%, 0.5)' }}>
+              <Mail className="w-3.5 h-3.5" strokeWidth={1.2} /> petresestetica@gmail.com
             </a>
           </div>
 
